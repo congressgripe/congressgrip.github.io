@@ -1,0 +1,114 @@
+<div class="search-header"
+     ng-show="homeCtrl.isSearchHeaderVisible()">
+  Congress.Gripe
+</div>
+
+<div class="search-card mdl-card mdl-shadow--2dp"
+     ng-class="homeCtrl.getSearchCardClass()">
+
+  <div class="search-card__search-box-container">
+    <input class="search-card__search-box mdl-textfield__input"
+           autofocus
+           type="text"
+           placeholder="Find a member of congress"
+           ng-change="homeCtrl.search()"
+           ng-keyup="homeCtrl.handleSearchKeyup($event)"
+           ng-model="homeCtrl.currentSearch">
+
+    <div class="search-card__loading-indicator mdl-spinner mdl-spinner--single-color mdl-js-spinner"
+         ng-class="homeCtrl.getLoadingIndicatorClass()"></div>
+
+    <button class="search-card_clear-button"
+            ng-click="homeCtrl.handleClearButtonClick()"
+            ng-show="homeCtrl.isClearButttonVisible()">
+      <i class="material-icons">clear</i>
+    </button>
+
+    <div class="search-help"
+         ng-show="homeCtrl.isHelpVisible()">
+      <div class="mdl-card__title search-help__title">
+        <h2 class="mdl-card__title-text search-help__title-text">
+          Try using:
+        </h2>
+      </div>
+
+      <ul class="mdl-card__supporting-text search-help__search-options">
+        <li>
+          An Address
+          <a href="/?q=601+W+Broadway,+Louisville+KY"
+            ng-click="homeCtrl.handleSearchLink()">
+            e.g. 601 W Broadway, Louisville KY »
+          </a>
+        </li>
+
+        <li>
+          A State
+          <a href="/?q=Illinois"
+            ng-click="homeCtrl.handleSearchLink()">
+            e.g. Illinois »
+          </a>
+        </li>
+
+        <li>
+          A Name
+          <a href="/?q=Ryan"
+            ng-click="homeCtrl.handleSearchLink()">
+            e.g. Ryan »
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="search-no-results"
+       ng-show="homeCtrl.isNoResultsVisible()">
+    No results found
+
+    <button class="mdl-button mdl-js-button mdl-button--raised search-no-results__clear-button"
+            ng-click="homeCtrl.handleClearButtonClick()">
+      Try again
+    </button>
+  </div>
+
+  <div class="search-card__search-results-header"
+       ng-show="homeCtrl.isCurrentSearchForState()">
+    <a href="{{homeCtrl.getStateUrl()}}">
+      <i class="search-card__state-icon"
+        ng-class="homeCtrl.getStateIconClass()"></i>
+      View all {{homeCtrl.getMembersCount()}} Senators and Representatives for {{homeCtrl.getStateForStateHeader()}} »
+    </a>
+  </div>
+
+  <div class="search-card__search-results-header"
+       ng-show="homeCtrl.currentCongressionalDistrict">
+    <i class="search-card__state-icon"
+       ng-class="homeCtrl.getStateIconClass()"></i>
+    <a href="{{homeCtrl.getDistrictUrl()}}">
+      View Senators and Representatives for {{homeCtrl.getCongressionalDistrictHeader()}} »
+    </a>
+  </div>
+
+  <ul class="mdl-list search-card__search-results"
+      ng-show="homeCtrl.hasSearchResults()">
+    <li class="mdl-list__item mdl-list__item--three-line search-card__search-result"
+        ng-repeat="member in homeCtrl.getSearchResults()">
+      <a href="{{homeCtrl.getMemberUrl(member)}}">
+        <span class="mdl-list__item-primary-content">
+          <i class="material-icons mdl-list__item-icon search-card__search-result__icon"
+             ng-class="homeCtrl.getPartyColorForMember(member)">
+            reply
+          </i>
+
+          <span>
+            {{homeCtrl.getNameForMember(member)}}
+          </span>
+
+          <span class="mdl-list__item-text-body">
+            {{member.party}} {{member.title_long}} from {{member.customData.fullStateName}}
+          </span>
+        </span>
+      </a>
+    </li>
+  </ul>
+</div>
+
