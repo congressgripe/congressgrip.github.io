@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
 
-  <script src="assets/97b55316413de9eca7b4.app.js"></script>
-  <link rel="stylesheet" href="assets/97b55316413de9eca7b4.main.css">
+  <script src="assets/921ce37b672c2522b981.app.js"></script>
+  <link rel="stylesheet" href="assets/921ce37b672c2522b981.main.css">
 
   <title>
     Contact Congress | congress.gripe
@@ -20,9 +20,17 @@
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header site-header"
             ng-show="siteCtrl.isHeaderVisible()">
-      <a href="/" class="mdl-layout-title site-header__text">
-        Congress.Gripe
-      </a>
+      <div class="mdl-layout__header-row site-header__row">
+        <h1 class="mdl-layout-title site-header__text">
+          <a href="/" class="site-header__text">
+            Congress.Gripe
+          </a>
+        </h1>
+
+        <h2 class="site-header__subtext">
+          Quickly find and contact a member of congress
+        </h2>
+      </div>
     </header>
 
     <main class="mdl-layout__content" ng-view autoscroll>
